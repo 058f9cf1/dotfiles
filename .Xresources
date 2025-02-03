@@ -1,0 +1,19 @@
+xterm*termName: xterm-256color
+
+xterm*foreground:	#ffffff
+xterm*background:	#101010
+xterm*cursorColor:	#c479a2
+
+!Fonts
+xterm*faceName:		Free Mono
+xterm*faceSize:		12
+xterm*renderFont:	true
+
+!Remove trailing spaces when double clicking
+xterm*trimSelection: true
+
+!Allow zooming
+*VT100.Translations: #override \
+    Ctrl <Key> minus: smaller-vt-font() \n\
+    Ctrl <Key> plus: larger-vt-font() \n\
+    Ctrl <Key> 0: set-vt-font(d)
