@@ -1,0 +1,77 @@
+markup=pango
+separator=false
+separator_block_width=20
+border_right=0
+border_bottom=0
+border_left=0
+
+[mediaplayer]
+border=#FF79C6
+label=<span color="#FF79C6"> </span>
+command=playerctl metadata --ignore-player=firefox --format "{{artist}} <span color=\"#FF79C6\">-</span> {{title}}"
+interval=1
+
+[weather]
+border=#FF79C6
+label=<span color="#FF79C6"> </span>
+command=./weather
+interval=600
+
+[wifi]
+border=#BD93F9
+label=<span color="#BD93F9"> </span>
+command=iwgetid -r | tr '\n' ' ' && grep $(iwgetid -m | awk '{printf "%s", $1}') /proc/net/wireless | awk '{printf "%i<span color=\"#BD93F9\">%</span>\n", int($3 * 100 / 70)}'
+interval=5
+
+[gpu_stats]
+border=#296CD1
+label=<span color="#296CD1"><b>GPU: </b></span>
+command=nvidia-smi --query-gpu=utilization.gpu --format=csv,noheader,nounits | awk '{printf "%02i<span color=\"#296CD1\">%</span>", $0}' && nvidia-smi --query-gpu=temperature.gpu --format=csv,noheader,nounits | awk '{printf " %i<span color=\"#296CD1\">°C</span>\n", $0}'
+interval=2
+
+[cpu_stats]
+border=#50FA7B
+label=<span color="#50FA7B"> </span>
+command=vmstat | tail -1 | awk '{printf "%02i<span color=\"#50FA7B\">%</span>", 100 - $15}' && sensors | grep Package | awk '{printf " %i<span color=\"#50FA7B\">°C</span>\n", $4}'
+interval=2
+
+[memory]
+border=#F1FA8C
+label=<span color="#F1FA8C"> </span>
+command=free -g | awk 'FNR==2{printf "%d<span color=\"#F1FA8C\"> GiB</span>\n", $7}'
+interval=2
+
+[home]
+border=#FFB86C
+label=<span color="#FFB86C"> </span>
+command=./home
+interval=1
+
+[main_storage]
+border=#FF5555
+label=<span color="#FF5555"> </span>
+command=./main_storage
+interval=1
+
+[battery]
+border=#FF5555
+command=./battery
+interval=1
+
+[volume]
+border=#FFFFFF
+label=<span color="#FFFFFF"> </span>
+command=./volume
+interval=once
+
+[time]
+border=#9AC7F8
+label=<span color="#9AC7F8"> </span>
+command=date '+%H:%M:%S %Z' | awk '{printf "%s<span color=\"#9AC7F8\"> %s</span>\n", $1, $2}'
+interval=1
+
+[date]
+border=#C479A2
+label=<span color="#C479A2"> </span>
+command=date '+%Y-%m-%d %A' | awk '{printf "%s<span color=\"#C479A2\"> %s</span>\n", $1, $2}'
+interval=1

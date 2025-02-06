@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+if [ -z "$( ls -A ~/Main_Storage )" ]; then
+	printf "Not Mounted\n"
+else
+	df -h -BG ~/Main_Storage | awk '/\/.*/ {printf "%d<span color=\"#FF5555\"> GiB</span>\n", $4, $5}'
+fi
+
+if [[ "${BLOCK_BUTTON}" -eq 1 ]]; then
+	(cd ~/Main_Storage && xterm ranger)
+fi

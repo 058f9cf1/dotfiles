@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+df -h -BG ~ | awk '/\/.*/ {printf "%d<span color=\"#FFB86C\"> GiB</span>\n", $4, $5}'
+
+if [[ "${BLOCK_BUTTON}" -eq 1 ]]; then
+	(cd ~ && xterm ranger)
+fi
