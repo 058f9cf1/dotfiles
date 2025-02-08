@@ -2,7 +2,9 @@ git
 vim
 alsa-utils
 ranger
+cmus
 playerctl
+hyfetch
 xorg-server
 xorg-apps
 xorg-xinit
