@@ -4,6 +4,7 @@ alsa-utils
 ranger
 cmus
 playerctl
+htop
 hyfetch
 xorg-server
 xorg-apps
